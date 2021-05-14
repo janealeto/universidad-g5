@@ -5,11 +5,16 @@
  */
 package pro.universidad;
 
+import Datas.MateriaData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.List;
+import javax.swing.JOptionPane;
 import pro.universidad.modelo.Alumno;
+import pro.universidad.modelo.Conexion;
+import pro.universidad.modelo.Materia;
 
 /**
  *
@@ -22,6 +27,7 @@ public class ProUniversidad {
 //     */
     public static void main(String[] args) {
         // TODO code application logic here
+        /*
 try{
             
             //1- Crear conexion.
@@ -42,5 +48,21 @@ try{
              e.printStackTrace();
         }
     }
-    
+    */
+        
+        // Prueba de clase 13-5 MATERIA DATA 
+       Conexion conexion= null;
+       try{
+           conexion= new Conexion();
+       }catch(ClassNotFoundException ex){
+           JOptionPane.showMessageDialog(null, "Error");
+       }
+        Materia ma= new Materia("fisica cuantica", 4, true);
+        MateriaData mad = new MateriaData(conexion);
+        mad.ingresoMateria(ma);
+         List<Materia> list =  mad.obtenerMaterias();
+         for(Materia a : list){
+             System.out.println(a.getNombre());
+         }
+    }       
 }
