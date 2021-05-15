@@ -22,7 +22,7 @@ import pro.universidad.modelo.Materia;
 
 /**
  *
- * @author Mauri
+ * @author Jannete
  */
 public class MateriaData {
     private Connection conexion;
