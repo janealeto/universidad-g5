@@ -31,7 +31,7 @@ public class MateriaData {
         try {
             this.conexion= conexion.getConexion();
         }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion");
+            JOptionPane.showMessageDialog(null, "Error de conexion en Materia Data: "+ex.getMessage());//les puse un getMessage para saber donde tiraba el error
         }
     }
     
@@ -44,14 +44,14 @@ public class MateriaData {
         ps.setInt(2, ma.getAnio());
         ps.setBoolean(3,ma.isEstado());
         ps.executeUpdate();//para guardar, SE GENERA EL AUTONUMERICO, EL ID
-        ResultSet rs = ps.getGeneratedKeys();
+        ResultSet rs = ps.getGeneratedKeys();//me devuelve todas las claves
         if(rs.next()){
-        ma.setIdMateria(rs.getInt(1));
+        ma.setIdMateria(rs.getInt(1));//aca materia ahora tiene el id (la que recibe por parametro)
         }
         ps.close();
         }
         catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion");
+            JOptionPane.showMessageDialog(null, "Error de conexion en ingresoMateria: "+ex.getMessage());
     }
     }
     
@@ -65,7 +65,7 @@ public class MateriaData {
              ps.close();
         }
         catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion");
+            JOptionPane.showMessageDialog(null, "Error de conexion en desactivarMateria: "+ex.getMessage());
     }
     }
     public void actualizarMateria(Materia ma){
@@ -79,7 +79,7 @@ public class MateriaData {
              ps.close();
         }
         catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion");
+            JOptionPane.showMessageDialog(null, "Error de conexion en actualizarMateria: "+ex.getMessage());
     }
     }
     public void buscarMateria(int id){
@@ -93,12 +93,12 @@ public class MateriaData {
                  
                 ma.setNombre(rs.getString("nombre"));
                 ma.setIdMateria(rs.getInt("idMateria"));
-                ma.setEstado(rs.getBoolean("activo"));
+                ma.setEstado(rs.getBoolean("estado"));//aca en vez de "activo" es "estado" (tal cual esta en la base de datos)
                 ma.setAnio(rs.getInt("anio"));
              }
              
     } catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion");
+            JOptionPane.showMessageDialog(null, "Error de conexion buscarMateria: "+ex.getMessage());
     }
     }
     public List<Materia> obtenerMaterias(){
@@ -113,13 +113,13 @@ public class MateriaData {
                 mat = new Materia();
                 mat.setNombre(rs.getString("nombre"));
                 mat.setIdMateria(rs.getInt("idMateria"));
-               // mat.setEstado(rs.getBoolean("activo"));
+                mat.setEstado(rs.getBoolean("estado"));//aca igual. En vez de "activo" es "estado" (tal cual esta en la base de datos)
                 mat.setAnio(rs.getInt("anio"));
                 materias.add(mat);
              }
              
     }catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion lista");
+            JOptionPane.showMessageDialog(null, "Error de conexion lista obtenerMaterias: "+ex.getMessage());
         }
     return materias;
     
