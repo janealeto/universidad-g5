@@ -9,8 +9,11 @@ import Datas.MateriaData;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import pro.universidad.modelo.Alumno;
 import pro.universidad.modelo.Conexion;
@@ -53,16 +56,21 @@ try{
         // Prueba de clase 13-5 MATERIA DATA 
        Conexion conexion= null;
        try{
-           conexion= new Conexion();
+           conexion = new Conexion();
+           
+           
        }catch(ClassNotFoundException ex){
-           JOptionPane.showMessageDialog(null, "Error");
-       }
-        Materia ma= new Materia("fisica cuantica", 4, true);
+           JOptionPane.showMessageDialog(null, "Error de driver");
+     }
+       
+        Materia ma= new Materia("fisica cuantica", 2, true);
         MateriaData mad = new MateriaData(conexion);
         mad.ingresoMateria(ma);
-         List<Materia> list =  mad.obtenerMaterias();
-         for(Materia a : list){
+         List<Materia> lista =  mad.obtenerMaterias();
+         for(Materia a : lista){
              System.out.println(a.getNombre());
+             System.out.println(a.getIdMateria());
+             //Ahora si se agrega a la base de datos
          }
     }       
 }
