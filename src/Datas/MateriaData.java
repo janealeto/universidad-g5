@@ -82,24 +82,26 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "Error de conexion en actualizarMateria: "+ex.getMessage());
     }
     }
-    public void buscarMateria(int id){
-        Materia ma= new Materia();
-        String sql="SELECT `materia` WHERE idMateria=?";
+    public Materia buscarMateria(int id){
+        Materia ma=null;
+        String sql="SELECT * FROM `materia` WHERE idMateria=?";
         try{
              PreparedStatement ps=conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
              ps.setInt(1, id);
              ResultSet rs = ps.executeQuery();
-             if(rs.next()){
-                 
+             while(rs.next()){
+                ma= new Materia();
                 ma.setNombre(rs.getString("nombre"));
                 ma.setIdMateria(rs.getInt("idMateria"));
                 ma.setEstado(rs.getBoolean("estado"));//aca en vez de "activo" es "estado" (tal cual esta en la base de datos)
                 ma.setAnio(rs.getInt("anio"));
              }
+             ps.close();
              
     } catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Error de conexion buscarMateria: "+ex.getMessage());
     }
+        return ma;
     }
     public List<Materia> obtenerMaterias(){
     Materia mat;

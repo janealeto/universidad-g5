@@ -17,7 +17,7 @@ import pro.universidad.modelo.Conexion;
 
 
 
-
+//Subir al git
 
 public class AlumnoData {
     private Connection conexion;
@@ -32,7 +32,7 @@ public class AlumnoData {
     
     
     public void ingresoAlumno(Alumno alumno){
-        String sql = "INSERT INTO alumno (legajo,apellido, nombre, fechaNac, estado) VALUES ( ?,?,?,?,?);";
+        String sql = "INSERT INTO alumno (legajo,apellido, nombre, fechaNac, activo) VALUES ( ?,?,?,?,?);";
         
         try {
             
@@ -40,8 +40,8 @@ public class AlumnoData {
             ps.setInt(1,alumno.getLegajo());
             ps.setString(2,alumno.getApellido());
             ps.setString(3, alumno.getNombre());
-            ps.setBoolean(4,alumno.isActivo());
-            ps.setDate(5, Date.valueOf(alumno.getFechaNac()));
+            ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
+            ps.setBoolean(5,alumno.isActivo());//
             ps.executeUpdate();
             
             ResultSet rs = ps.getGeneratedKeys();
@@ -79,7 +79,7 @@ public class AlumnoData {
 
                 alumnos.add(alumno);
             }      
-//            statement.close();
+           ps.close();
         } catch (SQLException ex) {
             System.out.println("Error al obtener los alumnos: " + ex.getMessage());
         }
@@ -90,9 +90,9 @@ public class AlumnoData {
     public void borrarAlumno(int id){
     try {
             
-            String sql = "DELETE FROM alumno WHERE id =?;";
+            String sql = "DELETE FROM alumno WHERE idAlumno =?";
 
-            PreparedStatement statement = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement statement = conexion.prepareStatement(sql);
             statement.setInt(1, id);
             statement.executeUpdate();
             statement.close();
@@ -103,9 +103,9 @@ public class AlumnoData {
         
     
     }
-    //De Pedro Ernesto Blanco para todos:  11:53 AM
+    
     public void actualizarAlumno(Alumno alumno){
-        String sql = "UPDATE alumno SET apellido = ?,nombre = ?, fechaNac = ?  WHERE idAlumno = ?;";
+        String sql = "UPDATE alumno SET apellido = ?,nombre = ?, fechaNac = ?, legajo=? WHERE idAlumno = ?";
         
         try {
             
@@ -114,6 +114,7 @@ public class AlumnoData {
             ps.setString(2, alumno.getNombre());
             ps.setDate(3, Date.valueOf(alumno.getFechaNac()));
             ps.setInt(4, alumno.getLegajo());
+            ps.setInt(5,alumno.getIdAlumno());
             ps.executeUpdate();
             
           
@@ -124,13 +125,13 @@ public class AlumnoData {
         }
     
     }
-    public Alumno buscarAlumno(int id){
+    public Alumno buscarAlumno(int idAlumno){
     Alumno alumno=null;
     String sql = "SELECT * FROM alumno WHERE idAlumno =?;";
         try {
             
             PreparedStatement ps = conexion.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, id);
+            ps.setInt(1, idAlumno);
            
             
             ResultSet rs=ps.executeQuery();
@@ -138,10 +139,11 @@ public class AlumnoData {
             while(rs.next()){
                 alumno = new Alumno();
                 alumno.setLegajo(rs.getInt("legajo"));
+                alumno.setApellido(rs.getString("apellido"));
                 alumno.setNombre(rs.getString("nombre"));
                 alumno.setFechaNac(rs.getDate("fechaNac").toLocalDate());
                 alumno.setActivo(rs.getBoolean("activo"));
-
+                alumno.setIdAlumno(rs.getInt("idAlumno"));
                 
             }      
             ps.close();
@@ -153,4 +155,5 @@ public class AlumnoData {
         
         return alumno;
     }
+    
 }
