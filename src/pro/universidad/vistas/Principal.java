@@ -99,8 +99,18 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu6);
 
         jMenu7.setText("Consultas");
+        jMenu7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu7ActionPerformed(evt);
+            }
+        });
 
         jMenuItem6.setText("Listado de Alumnos x Materia");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         jMenu7.add(jMenuItem6);
 
         jMenuBar1.add(jMenu7);
@@ -134,6 +144,22 @@ public class Principal extends javax.swing.JFrame {
         escritorio.add(va);
         escritorio.moveToFront(va);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+                   escritorio.removeAll();
+        escritorio.repaint();
+        VistaAlumnosMateria va= new VistaAlumnosMateria();
+        va.setVisible(true);
+        escritorio.add(va);
+        escritorio.moveToFront(va);
+    
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenu7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu7ActionPerformed
+        // TODO add your handling code here:
+  
+    }//GEN-LAST:event_jMenu7ActionPerformed
 
     /**
      * @param args the command line arguments
