@@ -170,8 +170,8 @@ public class VistaAlumnosMateria extends javax.swing.JInternalFrame {
     public void borrarFilasTabla(){
         
         int a = modelo.getRowCount()-1;
-        for ( int i = 0 ; i>=0; i--){
-            modelo.removeRow(a);
+        for ( int i = a ; i>=0; i--){
+            modelo.removeRow(i);
         }
     }
     public void cargaDatos(){
