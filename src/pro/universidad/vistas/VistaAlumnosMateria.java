@@ -68,12 +68,18 @@ public class VistaAlumnosMateria extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tAlumnos = new javax.swing.JTable();
 
+        setClosable(true);
+        setIconifiable(true);
+        setMaximizable(true);
+        setResizable(true);
+
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 102, 255));
         jLabel1.setText("LISTADO DE ALUMNOS X MATERIA");
 
         jLabel2.setText("MATERIA");
 
+        cbMateria.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         cbMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbMateriaActionPerformed(evt);

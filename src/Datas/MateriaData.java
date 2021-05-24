@@ -126,4 +126,17 @@ public class MateriaData {
     return materias;
     
     }
+    public void borrarMateria(int id){
+        String sql="DELETE FROM materia WHERE idMateria=?";
+        try{
+             PreparedStatement ps=conexion.prepareStatement(sql);
+             ps.setInt(1, id);
+             ps.executeUpdate();
+             ps.close();
+             JOptionPane.showMessageDialog(null, "Borrado con exito");
+        }
+        catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error de conexion en borrar materia: "+ex.getMessage());
+    }
+}
 }
