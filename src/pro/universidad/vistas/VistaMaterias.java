@@ -245,8 +245,9 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
             String nombre=jtNombre.getText();
             int anio=Integer.parseInt(jtAnio.getText());
             boolean activo= chActivo.isEnabled();
+            int id = Integer.parseInt(jtId.getText());
 
-            Materia materia = new Materia(nombre,anio,activo);;
+            Materia materia = new Materia(id,nombre,anio,activo);
             ad.actualizarMateria(materia);
         }
     }//GEN-LAST:event_jbActualizarActionPerformed

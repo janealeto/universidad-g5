@@ -271,8 +271,9 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             int legajo= Integer.parseInt(jtLegajo.getText());
             LocalDate fecha= LocalDate.parse(jtFecha.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             boolean activo= chActivo.isEnabled();
+            int id= Integer.parseInt(jtId.getText());
         
-             Alumno alumno= new Alumno(apellido,nombre,activo,legajo,fecha);
+             Alumno alumno= new Alumno(id,apellido,nombre,activo,legajo,fecha);
              ad.actualizarAlumno(alumno);
         }
     }//GEN-LAST:event_jbActualizarActionPerformed
