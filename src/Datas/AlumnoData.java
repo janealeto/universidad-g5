@@ -119,6 +119,7 @@ public class AlumnoData {
             
           
             ps.close();
+            JOptionPane.showMessageDialog(null, "Actualizado con exito");
     
         } catch (SQLException ex) {
             System.out.println("Error al insertar un alumno: " + ex.getMessage());

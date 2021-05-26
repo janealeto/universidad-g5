@@ -77,6 +77,7 @@ public class MateriaData {
              ps.setInt(3,ma.getIdMateria());
              ps.executeUpdate();
              ps.close();
+             JOptionPane.showMessageDialog(null, "Materia actualizada con exito");
         }
         catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Error de conexion en actualizarMateria: "+ex.getMessage());
