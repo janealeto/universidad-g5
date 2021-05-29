@@ -74,6 +74,11 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
         jLabel6.setText("AÑO");
 
         chActivo.setBorder(null);
+        chActivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chActivoActionPerformed(evt);
+            }
+        });
 
         jbBuscar.setText("BUSCAR");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +225,7 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // TODO add your handling code here:
+        
         String nombre=jtNombre.getText();
         int anio=Integer.parseInt(jtAnio.getText());
        
@@ -233,14 +238,14 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarActionPerformed
-        // TODO add your handling code here:
+        
         int id= Integer.parseInt(jtId.getText());
         ad.borrarMateria(id);
 
     }//GEN-LAST:event_jBorrarActionPerformed
 
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
-        // TODO add your handling code here:
+        
         if(jtId.getText() !=null){
             String nombre=jtNombre.getText();
             int anio=Integer.parseInt(jtAnio.getText());
@@ -253,12 +258,16 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        // TODO add your handling code here:
+        
         jtId.setText("");
         jtNombre.setText("");
         jtAnio.setText("");
         chActivo.setEnabled(false);
     }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void chActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chActivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chActivoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

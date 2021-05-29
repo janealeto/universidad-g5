@@ -189,6 +189,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtId">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtIdActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jtNombre">
         </Component>
@@ -252,6 +255,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtLegajo">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtLegajoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -10,6 +10,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pro.universidad.modelo.*;
 import pro.universidad.*;
 /**
@@ -88,6 +89,12 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         jLabel6.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel6.setText("APELLIDO:");
 
+        jtId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIdActionPerformed(evt);
+            }
+        });
+
         chActivo.setBorder(null);
 
         jbBuscar.setText("BUSCAR");
@@ -127,6 +134,12 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Dialog", 0, 12)); // NOI18N
         jLabel7.setText("LEGAJO:");
+
+        jtLegajo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtLegajoActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -246,12 +259,20 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String nombre=jtNombre.getText();
         String apellido=jtApellido.getText();
-        int legajo= Integer.parseInt(jtLegajo.getText());
+        int legajo;//no se si esta bien
+        
+        try{
+        legajo= Integer.parseInt(jtLegajo.getText());
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Legajo erroneo");
+            return;
+        }
+        
         LocalDate fecha= LocalDate.parse(jtFecha.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         boolean activo= chActivo.isEnabled();
         
         Alumno alumno= new Alumno(apellido,nombre,activo,legajo,fecha);
-        
+         
         ad.ingresoAlumno(alumno);
         jtId.setText(alumno.getIdAlumno()+"");
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -301,6 +322,14 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             chActivo.setEnabled(alumno.isActivo());
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtIdActionPerformed
+
+    private void jtLegajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtLegajoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtLegajoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

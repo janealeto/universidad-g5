@@ -75,7 +75,7 @@ public class VistaAlumnosMateria extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 102, 255));
-        jLabel1.setText("LISTADO DE ALUMNOS X MATERIA");
+        jLabel1.setText("LISTADO DE ALUMNOS POR MATERIA");
 
         jLabel2.setText("MATERIA");
 
@@ -133,7 +133,8 @@ public class VistaAlumnosMateria extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2)
                     .addComponent(cbMateria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(120, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
