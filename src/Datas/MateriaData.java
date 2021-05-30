@@ -49,7 +49,9 @@ public class MateriaData {
         ma.setIdMateria(rs.getInt(1));//aca materia ahora tiene el id (la que recibe por parametro)
         }
         ps.close();
+        JOptionPane.showMessageDialog(null, "Materia guardada con exito");
         }
+        
         catch (SQLException ex){
             JOptionPane.showMessageDialog(null, "Error de conexion en ingresoMateria: "+ex.getMessage());
     }

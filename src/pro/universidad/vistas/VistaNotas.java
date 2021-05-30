@@ -11,6 +11,7 @@ import Datas.MateriaData;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 import pro.universidad.modelo.Alumno;
@@ -193,6 +194,7 @@ public class VistaNotas extends javax.swing.JInternalFrame {
         
         System.out.println("idAlumno "+ al.getIdAlumno()+" idMateria "+ idMateria+" Nota " +nota);
         cd.actualizarNotaCursada(al.getIdAlumno(), idMateria, nota );
+        JOptionPane.showMessageDialog(null, "nota actualizada");
     }//GEN-LAST:event_botonGuarActionPerformed
 
     private void tMateriasPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tMateriasPropertyChange

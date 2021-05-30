@@ -50,9 +50,9 @@ public class AlumnoData {
             alumno.setIdAlumno(rs.getInt(1));
         }
         ps.close();
-        }
+        JOptionPane.showMessageDialog(null,"Alumno Registrado");        }
         catch (SQLException ex){
-            JOptionPane.showMessageDialog(null, "Error de conexion en ingresoAlumno: "+ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Legajo duplicado, ingrese otro");
     }
     }
             
@@ -97,7 +97,7 @@ public class AlumnoData {
             statement.setInt(1, id);
             statement.executeUpdate();
             statement.close();
-    
+            JOptionPane.showMessageDialog(null,"Alumno borrado con exito");
         } catch (SQLException ex) {
             System.out.println("Error al insertar un alumno: " + ex.getMessage());
         }

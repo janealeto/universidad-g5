@@ -8,6 +8,7 @@ package pro.universidad.vistas;
 import Datas.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import pro.universidad.modelo.*;
 
 /**
@@ -214,6 +215,7 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
+        try{
         int id= Integer.parseInt(jtId.getText());
         Materia materia=  ad.buscarMateria(id);
         if (materia!=null){
@@ -221,20 +223,35 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
             jtNombre.setText(materia.getNombre());
             jtAnio.setText(materia.getAnio()+""); 
             chActivo.setEnabled(materia.isEstado());
+        }else{
+            JOptionPane.showMessageDialog(null, "No existe materia con este Id");
+            limpiado();
+        }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Rellenar con un numero la casilla id");
+            
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         
         String nombre=jtNombre.getText();
-        int anio=Integer.parseInt(jtAnio.getText());
-       
+        int anio=0;
+        try{
+         anio=Integer.parseInt(jtAnio.getText());
+        
         boolean activo= chActivo.isEnabled();
 
         Materia materia = new Materia(nombre,anio,activo);
-
+        
+        
         ad.ingresoMateria(materia);
+       
+       
         jtId.setText(materia.getIdMateria()+"");
+        }
+        catch (Exception e){JOptionPane.showMessageDialog(null, "Dato invalido en año");}
+
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarActionPerformed
@@ -248,13 +265,21 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
         
         if(jtId.getText() !=null){
             String nombre=jtNombre.getText();
-            int anio=Integer.parseInt(jtAnio.getText());
+            
             boolean activo= chActivo.isEnabled();
             int id = Integer.parseInt(jtId.getText());
-
+            try{
+            int anio=Integer.parseInt(jtAnio.getText());
             Materia materia = new Materia(id,nombre,anio,activo);
             ad.actualizarMateria(materia);
+            }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Campo invalido en año");    
+            }
+        }else {
+        
+        JOptionPane.showMessageDialog(null, "Campo Id vacio");
         }
+        
     }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
@@ -268,7 +293,12 @@ public class VistaMaterias extends javax.swing.JInternalFrame {
     private void chActivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chActivoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chActivoActionPerformed
-
+    public void limpiado(){
+        jtId.setText("");
+        jtNombre.setText("");
+        jtAnio.setText("");
+        chActivo.setEnabled(false);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chActivo;

@@ -267,7 +267,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this,"Legajo erroneo");
             return;
         }
-        
+        try{
         LocalDate fecha= LocalDate.parse(jtFecha.getText(),DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         boolean activo= chActivo.isEnabled();
         
@@ -275,6 +275,8 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
          
         ad.ingresoAlumno(alumno);
         jtId.setText(alumno.getIdAlumno()+"");
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(this,"Ingrese una fecha valida (dd/MM/yyyy) con numeros ");}
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -311,6 +313,7 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
+        try{
         int id= Integer.parseInt(jtId.getText());
         Alumno alumno=  ad.buscarAlumno(id);
         if (alumno!=null){
@@ -320,7 +323,13 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
             jtFecha.setText(alumno.getFechaNac().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             jtLegajo.setText(alumno.getLegajo()+"");
             chActivo.setEnabled(alumno.isActivo());
+        }else {
+            JOptionPane.showMessageDialog(null,"No existe alumno con tal Id");
+            limpiar();
         }
+        }
+        
+        catch (Exception e){JOptionPane.showMessageDialog(null, "Rellenar con un numero la casilla id");}
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
@@ -331,7 +340,14 @@ public class VistaAlumno extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtLegajoActionPerformed
 
-
+    public void limpiar(){
+        jtId.setText("");
+        jtNombre.setText("");
+        jtApellido.setText("");
+        jtFecha.setText("");
+        jtLegajo.setText("");
+        chActivo.setEnabled(false);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox chActivo;
     private javax.swing.JButton jButton3;
